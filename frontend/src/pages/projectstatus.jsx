@@ -14,7 +14,7 @@ function ProjectStatus() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate("/login");
+          navigate("/");
           return;
         }
 

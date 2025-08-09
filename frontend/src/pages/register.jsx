@@ -29,7 +29,7 @@ function Register() {
       }
 
       showMessage("✅ Registered successfully!", "success");
-      setTimeout(() => navigate("/login"), 1500);
+      setTimeout(() => navigate("/"), 1500);
     } catch (err) {
       showMessage("⚠️ Error during registration", "danger");
     }
