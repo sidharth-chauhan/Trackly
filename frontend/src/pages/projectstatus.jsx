@@ -18,7 +18,7 @@ function ProjectStatus() {
           return;
         }
 
-        const res = await fetch("http://localhost:8080/project/status", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/project/status`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

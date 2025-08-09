@@ -23,7 +23,7 @@ function Projects() {
           return;
         }
 
-        const res = await fetch("http://localhost:8080/project", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/project`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,

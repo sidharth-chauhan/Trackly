@@ -25,7 +25,7 @@ function EditProject() {
           return;
         }
 
-        const res = await fetch(`http://localhost:8080/project/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/project/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ function EditProject() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:8080/project/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/project/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

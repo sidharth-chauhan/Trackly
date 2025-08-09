@@ -21,7 +21,7 @@ function Dashboard() {
         }
 
         // Dashboard data
-        const res = await fetch(`http://localhost:8080/project/dashboard`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/project/dashboard`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -36,7 +36,7 @@ function Dashboard() {
         }
 
         // Status data
-        const statusRes = await fetch(`http://localhost:8080/project/status`, {
+        const statusRes = await fetch(`${import.meta.env.VITE_API_URL}/project/status`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
