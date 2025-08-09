@@ -1,4 +1,4 @@
-// Login.jsx
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,7 +17,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("${import.meta.env.VITE_API_URL}/user/login", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -95,8 +95,17 @@ function Login() {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary w-100">
+            <button type="submit" className="btn btn-primary w-100 mb-2">
               Login
+            </button>
+
+            {/* 👇 New Sign Up button */}
+            <button
+              type="button"
+              className="btn btn-outline-secondary w-100"
+              onClick={() => navigate("/register")}
+            >
+              Sign up
             </button>
           </form>
         </div>

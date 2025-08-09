@@ -9,6 +9,7 @@ function CreateProject() {
   const [link, setLink] = useState("");
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const showMessage = (text, type) => {
     setMessage({ text, type });
@@ -24,7 +25,7 @@ function CreateProject() {
         return;
       }
 
-      const res = await fetch("http://localhost:8080/project", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/project`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
