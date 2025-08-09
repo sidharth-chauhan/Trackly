@@ -18,7 +18,7 @@ function ProjectStatus() {
           return;
         }
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/project/status`, {
+        const res = await fetch(`https://trackly-a750.onrender.com/project/status`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

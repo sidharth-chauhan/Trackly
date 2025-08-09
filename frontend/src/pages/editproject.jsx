@@ -25,7 +25,7 @@ function EditProject() {
           return;
         }
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/project/${id}`, {
+        const res = await fetch(`https://trackly-a750.onrender.com/project/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ function EditProject() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/project/${id}`, {
+      const res = await fetch(`https://trackly-a750.onrender.com/project/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

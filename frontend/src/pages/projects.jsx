@@ -23,7 +23,7 @@ function Projects() {
           return;
         }
 
-        const res = await fetch(`${import.meta.env.VITE_API_URL}/project`, {
+        const res = await fetch(`https://trackly-a750.onrender.com/project`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ function Projects() {
 
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:8080/project/${id}`, {
+      const res = await fetch(`https://trackly-a750.onrender.com/project/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

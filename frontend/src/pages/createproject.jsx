@@ -25,7 +25,7 @@ function CreateProject() {
         return;
       }
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/project`, {
+      const res = await fetch(`https://trackly-a750.onrender.com/project`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
