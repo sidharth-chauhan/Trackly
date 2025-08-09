@@ -1,0 +1,27 @@
+package utils
+
+import (
+	"fmt"
+	"net/smtp"
+	"os"
+)
+
+func SendEmail(to, subject, body string) error {
+	from := os.Getenv("EMAIL_USER")
+	pass := os.Getenv("EMAIL_PASS")
+	smtpHost := os.Getenv("EMAIL_HOST")
+	smtpPort := os.Getenv("EMAIL_PORT")
+
+	//check
+	if from == "" || pass == "" || smtpHost == "" || smtpPort == "" {
+		return fmt.Errorf("missing email configuration in environment variables")
+	}
+	//email
+	msg := []byte("To:" + to + "\r\n" + subject + "/r/n/r/n" + body + "/r/n")
+
+	auth := smtp.PlainAuth("", from, pass, smtpHost)
+
+	//sending email
+	return smtp.SendMail(smtpHost+":"+smtpPort, auth, from, []string{to}, msg)
+
+}
