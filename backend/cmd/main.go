@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"openanalytics/internal/db"
 	"openanalytics/internal/middleware"
@@ -15,9 +16,16 @@ import (
 )
 
 func main() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("❌ Error loading .env file")
+	// Load .env only if running locally (Render will already have env vars set)
+	if os.Getenv("RENDER") == "" {
+		if err := godotenv.Load(); err != nil {
+			log.Println("⚠️ No .env file found, using system environment variables")
+		}
+	}
+
+	// Check if critical env vars exist
+	if os.Getenv("DB_URL") == "" {
+		log.Fatal("❌ DB_URL environment variable not set")
 	}
 
 	db.ConnectDB()
@@ -48,6 +56,12 @@ func main() {
 	projectRouter.HandleFunc("/{id}", project.DeleteProject).Methods("DELETE", "OPTIONS")
 	projectRouter.HandleFunc("/{id}", project.GetProjectByID).Methods("GET", "OPTIONS")
 
-	fmt.Println("OpenAnalytics backend is running on port 8080")
-	http.ListenAndServe(":8080", r)
+	// Use PORT from Render or default to 8080
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Printf("🚀 OpenAnalytics backend is running on port %s\n", port)
+	log.Fatal(http.ListenAndServe(":"+port, r))
 }
