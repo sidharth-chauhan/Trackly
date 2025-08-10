@@ -314,15 +314,14 @@ func GetDashboard(w http.ResponseWriter, r *http.Request) {
 //project status
 
 type ProjectStatus struct {
-	Name      string `json:"name"`
-	Link      string `json:"link"`
-	Status    string `json:"status"`
-	Code      int    `json:"code"`
-	UpdatedAt string `json:"updated_at"`
+	Name        string `json:"name"`
+	Link        string `json:"link"`
+	Status      string `json:"status"`
+	Code        int    `json:"code"`
+	LastUpdated string `json:"last_updated"`
 }
 
 func CheckProjectStatus(w http.ResponseWriter, r *http.Request) {
-	//user_id by jwt
 	userIDstr, ok := user.GetUserIDFromContext(r)
 	if !ok || userIDstr == "" {
 		http.Error(w, "User ID not found in context", http.StatusUnauthorized)
@@ -334,29 +333,28 @@ func CheckProjectStatus(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	//project from db
 	var projects []models.Project
 	result := db.DB.Where("user_id=?", userID).Find(&projects)
 	if result.Error != nil {
 		http.Error(w, "Failed to fetch projects", http.StatusInternalServerError)
 		return
 	}
-	//adding
+
 	var projectList []ProjectStatus
 
-	for _, p := range projects {
-		if strings.TrimSpace(p.Link) == "" {
-			continue // ⛔️ Skip projects with no link
-		}
-		status := ProjectStatus{
-			Name:      p.Name,
-			Link:      p.Link,
-			UpdatedAt: p.UpdatedAt.Format("2006-01-02 15:04:05"),
+	for i := range projects {
+		project := &projects[i]
+		if strings.TrimSpace(project.Link) == "" {
+			continue
 		}
 
-		// Step 3.1: Ping the site using http.Get
+		status := ProjectStatus{
+			Name: project.Name,
+			Link: project.Link,
+		}
+
 		client := http.Client{Timeout: 3 * time.Second}
-		resp, err := client.Get(p.Link)
+		resp, err := client.Get(project.Link)
 		if err != nil {
 			status.Status = "DOWN"
 			status.Code = 0
@@ -369,12 +367,16 @@ func CheckProjectStatus(w http.ResponseWriter, r *http.Request) {
 			} else {
 				status.Status = "DOWN"
 			}
-
 		}
+
+		project.UpdatedAt = time.Now()
+		db.DB.Save(project)
+
+		status.LastUpdated = project.UpdatedAt.Format("2006-01-02 15:04:05")
+
 		projectList = append(projectList, status)
 	}
 
-	//response json
 	w.Header().Set("Content-Type", "application/json")
 	jsonData, err := json.Marshal(projectList)
 	if err != nil {
@@ -383,7 +385,6 @@ func CheckProjectStatus(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(jsonData)
-
 }
 
 // checker
