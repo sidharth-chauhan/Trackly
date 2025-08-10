@@ -258,7 +258,7 @@ func DeleteProject(w http.ResponseWriter, r *http.Request) {
 //dashboard data
 
 type dashboardData struct {
-	TotalProjects int    `json:"total_projects`
+	TotalProjects int    `json:"total_projects"`
 	LatestProject string `json:"latest_projects"`
 	LastUpdated   string `json:"last_updated"`
 }
@@ -314,10 +314,11 @@ func GetDashboard(w http.ResponseWriter, r *http.Request) {
 //project status
 
 type ProjectStatus struct {
-	Name   string `json:"name`
-	Link   string `json:"link"`
-	Status string `json:"status"`
-	Code   int    `json:"code`
+	Name      string `json:"name"`
+	Link      string `json:"link"`
+	Status    string `json:"status"`
+	Code      int    `json:"code"`
+	UpdatedAt string `json:"updated_at"`
 }
 
 func CheckProjectStatus(w http.ResponseWriter, r *http.Request) {
@@ -348,8 +349,9 @@ func CheckProjectStatus(w http.ResponseWriter, r *http.Request) {
 			continue // ⛔️ Skip projects with no link
 		}
 		status := ProjectStatus{
-			Name: p.Name,
-			Link: p.Link,
+			Name:      p.Name,
+			Link:      p.Link,
+			UpdatedAt: p.UpdatedAt.Format("2006-01-02 15:04:05"),
 		}
 
 		// Step 3.1: Ping the site using http.Get
