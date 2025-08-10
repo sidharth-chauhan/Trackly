@@ -1,15 +1,15 @@
 package project
 
 import (
+	"Trackly/internal/db"
+	"Trackly/internal/models"
+	"Trackly/internal/user"
+	"Trackly/internal/utils"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
-	"openanalytics/internal/db"
-	"openanalytics/internal/models"
-	"openanalytics/internal/user"
-	"openanalytics/internal/utils"
 	"strconv"
 	"strings"
 	"time"

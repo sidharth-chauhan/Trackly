@@ -8,7 +8,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"openanalytics/internal/models"
+	"Trackly/internal/models"
 )
 
 var DB *gorm.DB

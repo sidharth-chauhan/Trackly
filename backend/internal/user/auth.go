@@ -1,12 +1,12 @@
 package user
 
 import (
+	"Trackly/internal/db"
+	"Trackly/internal/models"
 	"context"
 	"fmt"
 	"io/ioutil"
 	"net/http"
-	"openanalytics/internal/db"
-	"openanalytics/internal/models"
 	"os"
 	"strings"
 	"time"

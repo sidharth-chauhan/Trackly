@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"strings"
 
-	"openanalytics/internal/db"
-	"openanalytics/internal/models" // ✅ fixed import
+	"Trackly/internal/db"
+	"Trackly/internal/models"
 
 	"golang.org/x/crypto/bcrypt"
 )

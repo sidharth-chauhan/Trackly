@@ -1,4 +1,4 @@
-module openanalytics
+module Trackly
 
 go 1.24.1
 

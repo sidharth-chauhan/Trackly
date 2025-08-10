@@ -3,12 +3,12 @@ version: "3.8"
 services:
   db:
     image: postgres:15
-    container_name: openanalytics-db
+    container_name: trackly-db
     restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: yourpassword
-      POSTGRES_DB: openanalytics
+      POSTGRES_DB: trackly
     ports:
       - "5432:5432"
     volumes:

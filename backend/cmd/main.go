@@ -6,17 +6,17 @@ import (
 	"net/http"
 	"os"
 
-	"openanalytics/internal/db"
-	"openanalytics/internal/middleware"
-	"openanalytics/internal/project"
-	"openanalytics/internal/user"
+	"Trackly/internal/db"
+	"Trackly/internal/middleware"
+	"Trackly/internal/project"
+	"Trackly/internal/user"
 
 	"github.com/gorilla/mux"
 	"github.com/joho/godotenv"
 )
 
 func main() {
-	// Load .env only if running locally (Render will already have env vars set)
+	// Load .env only if running locally
 	if os.Getenv("RENDER") == "" {
 		if err := godotenv.Load(); err != nil {
 			log.Println("⚠️ No .env file found, using system environment variables")
@@ -32,7 +32,7 @@ func main() {
 
 	r := mux.NewRouter()
 
-	// ✅ Register middleware BEFORE routes
+	//  middleware
 	r.Use(middleware.CORSMiddleware)
 
 	// Healthcheck
@@ -62,6 +62,6 @@ func main() {
 		port = "8080"
 	}
 
-	fmt.Printf("🚀 OpenAnalytics backend is running on port %s\n", port)
+	fmt.Printf("🚀 Trackly backend is running on port %s\n", port)
 	log.Fatal(http.ListenAndServe(":"+port, r))
 }
