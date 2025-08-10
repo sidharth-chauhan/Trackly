@@ -10,13 +10,15 @@ import Dashboard from './pages/dashboard.jsx';
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/create" element={<CreateProject />} />
-      <Route path="/edit/:id" element={<EditProject />} />
-      <Route path="/status" element={<ProjectStatus />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/create" element={<CreateProject />} />
+        <Route path="/edit/:id" element={<EditProject />} />
+        <Route path="/status" element={<ProjectStatus />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Route>
     </Routes>
   );
 }
