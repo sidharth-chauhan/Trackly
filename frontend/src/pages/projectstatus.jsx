@@ -118,9 +118,9 @@ function ProjectStatus() {
           <div className="text-center mt-3">
             <button
               className="btn btn-secondary"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/projects")}
             >
-              Back to Dashboard
+              Back to Project
             </button>
           </div>
         </div>
