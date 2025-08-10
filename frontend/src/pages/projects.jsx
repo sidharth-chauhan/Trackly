@@ -12,7 +12,8 @@ function Projects() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate(`${import.meta.env.VITE_BASE_PATH}/`);
+          // Corrected navigation path
+          navigate("/");
           return;
         }
 
@@ -61,9 +62,8 @@ function Projects() {
           </h2>
           <button
             className="btn btn-primary"
-            onClick={() =>
-              navigate(`${import.meta.env.VITE_BASE_PATH}/create`)
-            }
+            // Corrected navigation path
+            onClick={() => navigate("/create")}
           >
             ➕ Create Project
           </button>
@@ -87,11 +87,8 @@ function Projects() {
                     </a>
                     <button
                       className="btn btn-sm btn-warning me-2"
-                      onClick={() =>
-                        navigate(
-                          `${import.meta.env.VITE_BASE_PATH}/edit/${p.id}`
-                        )
-                      }
+                      // Corrected navigation path
+                      onClick={() => navigate(`/edit/${p.id}`)}
                     >
                       ✏ Edit
                     </button>

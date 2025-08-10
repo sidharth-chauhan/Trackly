@@ -13,7 +13,8 @@ function ProjectStatus() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate(`${import.meta.env.VITE_BASE_PATH}/`);
+          // Corrected navigation path
+          navigate("/");
           return;
         }
 
@@ -118,9 +119,8 @@ function ProjectStatus() {
           <div className="text-center mt-3">
             <button
               className="btn btn-secondary"
-              onClick={() =>
-                navigate(`${import.meta.env.VITE_BASE_PATH}/dashboard`)
-              }
+              // Corrected navigation path
+              onClick={() => navigate("/dashboard")}
             >
               Back to Dashboard
             </button>

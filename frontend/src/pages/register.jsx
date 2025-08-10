@@ -8,7 +8,6 @@ function Register() {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_BACKEND_URL;
-  const BASE_PATH = import.meta.env.VITE_BASE_PATH;
 
   const showMessage = (text, type) => {
     setMessage({ text, type });
@@ -28,7 +27,8 @@ function Register() {
         return;
       }
       showMessage("✅ Registered successfully!", "success");
-      setTimeout(() => navigate(`${BASE_PATH}/`), 1500);
+      // Corrected navigation path
+      setTimeout(() => navigate("/"), 1500);
     } catch {
       showMessage("⚠️ Error during registration", "danger");
     }
@@ -94,7 +94,8 @@ function Register() {
             <button
               type="button"
               className="btn btn-outline-secondary w-100"
-              onClick={() => navigate(`${BASE_PATH}/`)}
+              // Corrected navigation path
+              onClick={() => navigate("/")}
             >
               Back to Login
             </button>

@@ -10,13 +10,13 @@ import Dashboard from './pages/dashboard.jsx';
 function App() {
   return (
     <Routes>
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/`} element={<Login />} />
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/register`} element={<Register />} />
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/projects`} element={<Projects />} />
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/create`} element={<CreateProject />} />
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/edit/:id`} element={<EditProject />} />
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/status`} element={<ProjectStatus />} />
-      <Route path={`${import.meta.env.VITE_BASE_PATH}/dashboard`} element={<Dashboard />} />
+      <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/projects" element={<Projects />} />
+      <Route path="/create" element={<CreateProject />} />
+      <Route path="/edit/:id" element={<EditProject />} />
+      <Route path="/status" element={<ProjectStatus />} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }

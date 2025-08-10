@@ -9,7 +9,6 @@ function Login() {
   const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_BACKEND_URL;
-  const BASE_PATH = import.meta.env.VITE_BASE_PATH;
 
   const showMessage = (text, type) => {
     setMessage({ text, type });
@@ -33,7 +32,8 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
       showMessage("✅ Login successful!", "success");
-      setTimeout(() => navigate(`${BASE_PATH}/projects`), 1500);
+      // Corrected navigation path
+      setTimeout(() => navigate("/projects"), 1500);
     } catch (err) {
       showMessage("⚠️ Error during login", "danger");
     }
@@ -104,7 +104,8 @@ function Login() {
             <button
               type="button"
               className="btn btn-outline-secondary w-100"
-              onClick={() => navigate(`${BASE_PATH}/register`)}
+              // Corrected navigation path
+              onClick={() => navigate("/register")}
             >
               Sign up
             </button>

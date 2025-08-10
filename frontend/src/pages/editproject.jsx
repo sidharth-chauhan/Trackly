@@ -20,7 +20,8 @@ function EditProject() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate(`${import.meta.env.VITE_BASE_PATH}/`);
+          // Corrected navigation path
+          navigate("/");
           return;
         }
 
@@ -68,7 +69,8 @@ function EditProject() {
       }
 
       showMessage("✅ Project updated successfully!", "success");
-      setTimeout(() => navigate(`${import.meta.env.VITE_BASE_PATH}/projects`), 1500);
+      // Corrected navigation path
+      setTimeout(() => navigate("/projects"), 1500);
     } catch {
       showMessage("⚠️ Error updating project", "danger");
     }
