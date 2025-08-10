@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter basename="/Trackly">
+  <BrowserRouter basename={import.meta.env.MODE === "production" ? "/Trackly" : "/"}>
     <App />
   </BrowserRouter>
 );
