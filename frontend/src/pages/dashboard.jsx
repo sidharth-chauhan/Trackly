@@ -122,7 +122,7 @@ function Dashboard() {
                 >
                   <h6 className="mb-2">Total Projects</h6>
                   <h3 className="fw-bold mb-0">
-                    {dashboardData?.TotalProjects ?? "—"}
+                    {dashboardData?.total_projects ?? "—"}
                   </h3>
                 </div>
               </div>
