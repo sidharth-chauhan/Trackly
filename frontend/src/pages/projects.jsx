@@ -12,7 +12,6 @@ function Projects() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          // Corrected navigation path
           navigate("/");
           return;
         }
@@ -60,13 +59,20 @@ function Projects() {
           >
             📁 Projects
           </h2>
-          <button
-            className="btn btn-primary"
-            // Corrected navigation path
-            onClick={() => navigate("/create")}
-          >
-            ➕ Create Project
-          </button>
+          <div>
+            <button
+              className="btn btn-primary me-2"
+              onClick={() => navigate("/create")}
+            >
+              ➕ Create Project
+            </button>
+            <button
+              className="btn btn-info"
+              onClick={() => navigate("/dashboard")}
+            >
+              📊 Dashboard
+            </button>
+          </div>
         </div>
         {error && <div className="alert alert-danger text-center">{error}</div>}
         <div className="row g-4">
@@ -87,7 +93,6 @@ function Projects() {
                     </a>
                     <button
                       className="btn btn-sm btn-warning me-2"
-                      // Corrected navigation path
                       onClick={() => navigate(`/edit/${p.id}`)}
                     >
                       ✏ Edit

@@ -1,4 +1,3 @@
-// src/pages/dashboard.jsx
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,7 +9,6 @@ function Dashboard() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchDashboardData = async () => {
@@ -21,7 +19,7 @@ function Dashboard() {
           return;
         }
 
-        const res = await fetch(`${API_URL}/project/dashboard`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/project/dashboard`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
@@ -35,7 +33,7 @@ function Dashboard() {
           setDashboardData(data);
         }
 
-        const statusRes = await fetch(`${API_URL}/project/status`, {
+        const statusRes = await fetch(`${import.meta.env.VITE_BACKEND_URL}/project/status`, {
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",

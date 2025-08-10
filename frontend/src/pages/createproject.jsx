@@ -1,4 +1,3 @@
-// src/pages/createproject.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,7 +8,6 @@ function CreateProject() {
   const [link, setLink] = useState("");
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const showMessage = (text, type) => {
     setMessage({ text, type });
@@ -25,7 +23,7 @@ function CreateProject() {
         return;
       }
 
-      const res = await fetch(`${API_URL}/project`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/project`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

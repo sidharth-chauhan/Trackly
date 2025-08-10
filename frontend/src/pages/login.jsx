@@ -8,8 +8,6 @@ function Login() {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
-  const API_URL = import.meta.env.VITE_BACKEND_URL;
-
   const showMessage = (text, type) => {
     setMessage({ text, type });
     setTimeout(() => setMessage(null), 3000);
@@ -18,7 +16,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`${API_URL}/user/login`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -32,7 +30,6 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
       showMessage("✅ Login successful!", "success");
-      // Corrected navigation path
       setTimeout(() => navigate("/projects"), 1500);
     } catch (err) {
       showMessage("⚠️ Error during login", "danger");
@@ -104,7 +101,6 @@ function Login() {
             <button
               type="button"
               className="btn btn-outline-secondary w-100"
-              // Corrected navigation path
               onClick={() => navigate("/register")}
             >
               Sign up

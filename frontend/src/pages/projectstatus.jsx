@@ -13,7 +13,6 @@ function ProjectStatus() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          // Corrected navigation path
           navigate("/");
           return;
         }
@@ -119,7 +118,6 @@ function ProjectStatus() {
           <div className="text-center mt-3">
             <button
               className="btn btn-secondary"
-              // Corrected navigation path
               onClick={() => navigate("/dashboard")}
             >
               Back to Dashboard

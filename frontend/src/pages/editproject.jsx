@@ -20,7 +20,6 @@ function EditProject() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          // Corrected navigation path
           navigate("/");
           return;
         }
@@ -69,7 +68,6 @@ function EditProject() {
       }
 
       showMessage("✅ Project updated successfully!", "success");
-      // Corrected navigation path
       setTimeout(() => navigate("/projects"), 1500);
     } catch {
       showMessage("⚠️ Error updating project", "danger");
