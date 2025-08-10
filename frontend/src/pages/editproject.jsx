@@ -1,4 +1,3 @@
-// EditProject.jsx
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -21,11 +20,11 @@ function EditProject() {
       try {
         const token = localStorage.getItem("token");
         if (!token) {
-          navigate("/login");
+          navigate(`${import.meta.env.VITE_BASE_PATH}/`);
           return;
         }
 
-        const res = await fetch(`https://trackly-a750.onrender.com/project/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/project/${id}`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -42,7 +41,7 @@ function EditProject() {
         setName(data.name);
         setDescription(data.description);
         setLink(data.link);
-      } catch (err) {
+      } catch {
         showMessage("⚠️ Error fetching project", "danger");
       }
     };
@@ -54,7 +53,7 @@ function EditProject() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`https://trackly-a750.onrender.com/project/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/project/${id}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -69,8 +68,8 @@ function EditProject() {
       }
 
       showMessage("✅ Project updated successfully!", "success");
-      setTimeout(() => navigate("/projects"), 1500);
-    } catch (err) {
+      setTimeout(() => navigate(`${import.meta.env.VITE_BASE_PATH}/projects`), 1500);
+    } catch {
       showMessage("⚠️ Error updating project", "danger");
     }
   };
@@ -154,4 +153,4 @@ function EditProject() {
   );
 }
 
-export default EditP
+export default EditProject;

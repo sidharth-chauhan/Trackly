@@ -1,4 +1,3 @@
-// Register.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -8,6 +7,8 @@ function Register() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+  const BASE_PATH = import.meta.env.VITE_BASE_PATH;
 
   const showMessage = (text, type) => {
     setMessage({ text, type });
@@ -17,20 +18,18 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`https://trackly-a750.onrender.com/user/register`, {
+      const res = await fetch(`${API_URL}/user/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
       if (!res.ok) {
         showMessage("❌ Registration failed", "danger");
         return;
       }
-
       showMessage("✅ Registered successfully!", "success");
-      setTimeout(() => navigate("/"), 1500);
-    } catch (err) {
+      setTimeout(() => navigate(`${BASE_PATH}/`), 1500);
+    } catch {
       showMessage("⚠️ Error during registration", "danger");
     }
   };
@@ -63,13 +62,11 @@ function Register() {
           >
             📝 Register
           </h2>
-
           {message && (
             <div className={`alert alert-${message.type} text-center`}>
               {message.text}
             </div>
           )}
-
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <input
@@ -81,7 +78,6 @@ function Register() {
                 required
               />
             </div>
-
             <div className="mb-3">
               <input
                 type="password"
@@ -92,9 +88,15 @@ function Register() {
                 required
               />
             </div>
-
-            <button type="submit" className="btn btn-success w-100">
+            <button type="submit" className="btn btn-primary w-100 mb-2">
               Register
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline-secondary w-100"
+              onClick={() => navigate(`${BASE_PATH}/`)}
+            >
+              Back to Login
             </button>
           </form>
         </div>

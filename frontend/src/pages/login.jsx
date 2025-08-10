@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,6 +8,9 @@ function Login() {
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
 
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
+  const BASE_PATH = import.meta.env.VITE_BASE_PATH;
+
   const showMessage = (text, type) => {
     setMessage({ text, type });
     setTimeout(() => setMessage(null), 3000);
@@ -17,7 +19,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`https://trackly-a750.onrender.com/user/login`, {
+      const res = await fetch(`${API_URL}/user/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -31,7 +33,7 @@ function Login() {
       const data = await res.json();
       localStorage.setItem("token", data.token);
       showMessage("✅ Login successful!", "success");
-      setTimeout(() => navigate("/projects"), 1500);
+      setTimeout(() => navigate(`${BASE_PATH}/projects`), 1500);
     } catch (err) {
       showMessage("⚠️ Error during login", "danger");
     }
@@ -99,11 +101,10 @@ function Login() {
               Login
             </button>
 
-            {/* 👇 New Sign Up button */}
             <button
               type="button"
               className="btn btn-outline-secondary w-100"
-              onClick={() => navigate("/register")}
+              onClick={() => navigate(`${BASE_PATH}/register`)}
             >
               Sign up
             </button>

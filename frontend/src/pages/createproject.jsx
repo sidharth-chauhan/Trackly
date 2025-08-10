@@ -1,4 +1,4 @@
-// CreateProject.jsx
+// src/pages/createproject.jsx
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -9,7 +9,7 @@ function CreateProject() {
   const [link, setLink] = useState("");
   const [message, setMessage] = useState(null);
   const navigate = useNavigate();
-  const API_URL = import.meta.env.VITE_API_URL;
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const showMessage = (text, type) => {
     setMessage({ text, type });
@@ -25,7 +25,7 @@ function CreateProject() {
         return;
       }
 
-      const res = await fetch(`https://trackly-a750.onrender.com/project`, {
+      const res = await fetch(`${API_URL}/project`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ function CreateProject() {
       }
 
       showMessage("✅ Project Created Successfully!", "success");
-      setTimeout(() => navigate("/projects"), 1500);
+      setTimeout(() => navigate("/projects"), 1200);
     } catch (err) {
       showMessage("⚠️ Error while creating project", "danger");
       console.error(err);
