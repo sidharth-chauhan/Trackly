@@ -65,6 +65,16 @@ Your Trackly instance is now live and running!
 
 ---
 
+## 🛠️ Tech Stack
+
+| Category      | Technologies                                                                                                                                                                                                                                                                                                 |
+| :------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Frontend** | <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React"> <img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=vite&logoColor=white" alt="Vite"> <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=bootstrap&logoColor=white" alt="Bootstrap"> |
+| **Backend** | <img src="https://img.shields.io/badge/Go-00ADD8?style=flat-square&logo=go&logoColor=white" alt="Go"> <img src="https://img.shields.io/badge/Gorilla_Mux-000000?style=flat-square" alt="Gorilla Mux"> <img src="https://img.shields.io/badge/GORM-BF5B00?style=flat-square" alt="GORM">                               |
+| **Database & DevOps** | <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL"> <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">                                                                                                                                                                                                 |
+
+---
+
 ## 🌐 API Endpoints
 
 All `/project` routes require a `Bearer <TOKEN>` in the `Authorization` header.
@@ -114,6 +124,7 @@ All `/project` routes require a `Bearer <TOKEN>` in the `Authorization` header.
     ```
 
 ---
+
 ## 🔧 Environment Variables
 
 The application is configured using the `docker-compose.yaml` file, which sets the necessary environment variables for each service. You can modify this file to change the configuration.
@@ -145,4 +156,3 @@ Pull requests are welcome! Feel free to fork the repo, suggest improvements, or 
 <p align="center">
   Made with 💙 by <a href="https://github.com/sidharth-chauhan">Sidharth Chauhan</a>
 </p>
-
