@@ -19,7 +19,7 @@ services:
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: yourpassword
-      DB_NAME: Trackly
+      DB_NAME: openanalytics
       JWT_SECRET: supersecretkey
     depends_on:
       - db
