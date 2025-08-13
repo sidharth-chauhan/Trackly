@@ -35,9 +35,9 @@ function Header() {
           Trackly
         </a>
 
-        {/* This wrapper pushes the buttons to the right */}
+        
         <div className="d-flex align-items-center ms-auto gap-2">
-          {/* FINAL: Contact Button */}
+          
           <a 
             href="mailto:chauhansiddharth71@gmail.com" 
             className="btn btn-outline-primary"
@@ -45,7 +45,7 @@ function Header() {
             Contact
           </a>
 
-          {/* Existing Logout Button */}
+          
           {showLogoutButton && (
             <button 
               className="btn btn-outline-danger" 
