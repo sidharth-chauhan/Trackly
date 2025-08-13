@@ -8,13 +8,14 @@ function Header() {
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to log out?')) {
       localStorage.removeItem('token');
-      window.location.href = '/Trackly/';
+      // Redirect to the base path of your project
+      window.location.href = '/Trackly/'; 
     }
   };
 
   return (
     <nav 
-      className="navbar navbar-expand-lg navbar-dark" 
+      className="navbar navbar-expand-lg" 
       style={{ 
         backgroundColor: '#fff', 
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
@@ -33,14 +34,27 @@ function Header() {
         >
           Trackly
         </a>
-        {showLogoutButton && (
-          <button 
-            className="btn btn-outline-danger" 
-            onClick={handleLogout}
+
+        {/* This wrapper pushes the buttons to the right */}
+        <div className="d-flex align-items-center ms-auto gap-2">
+          {/* FINAL: Contact Button */}
+          <a 
+            href="mailto:chauhansiddharth71@gmail.com" 
+            className="btn btn-outline-primary"
           >
-            Logout
-          </button>
-        )}
+            Contact
+          </a>
+
+          {/* Existing Logout Button */}
+          {showLogoutButton && (
+            <button 
+              className="btn btn-outline-danger" 
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          )}
+        </div>
       </div>
     </nav>
   );
