@@ -30,7 +30,7 @@ func main() {
 
 	db.ConnectDB()
 
-	// ✅ THIS LINE IS ADDED TO START THE BACKGROUND MONITOR
+	//BACKGROUND MONITOR
 	go project.MonitorProjects()
 
 	r := mux.NewRouter()
