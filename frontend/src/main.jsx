@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Trackly/">
+    {/* Remove basename for Vercel */}
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>

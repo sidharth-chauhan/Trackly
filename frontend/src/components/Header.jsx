@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import logo from '../assets/pic.png';
 
 function Header() {
   const location = useLocation();
@@ -9,7 +8,7 @@ function Header() {
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to log out?')) {
       localStorage.removeItem('token');
-      window.location.href = '/Trackly/';
+      window.location.href = '/'; // ✅ better for Vercel, no /Trackly/ base
     }
   };
 
@@ -22,18 +21,20 @@ function Header() {
         padding: '0.75rem 2rem' 
       }}
     >
-      <div className="container-fluid">
-        <a 
-          className="navbar-brand" 
-          href="#" 
-          style={{ 
-            fontWeight: 700, 
-            fontSize: '1.5rem', 
-            color: '#007bff' 
-          }}
-        >
-          Trackly
+      <div className="container-fluid d-flex justify-content-between align-items-center">
+        {/* Logo + Brand */}
+        <a className="navbar-brand d-flex align-items-center" href="/">
+          <img 
+            src="/pic.png"   // ✅ served from public/
+            alt="Trackly Logo" 
+            style={{ height: '40px', marginRight: '10px' }} 
+          />
+          <span style={{ fontWeight: 700, fontSize: '1.5rem', color: '#007bff' }}>
+            Trackly
+          </span>
         </a>
+
+        {/* Logout Button */}
         {showLogoutButton && (
           <button 
             className="btn btn-outline-danger" 
